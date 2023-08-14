@@ -50,12 +50,17 @@ export default function QuestionsScreen() {
 
   return (
     <View>
-      <Question data={questions.obj[selectedQuestion]} />
+      {questions.obj.map((question: any, key: number) => (
+        <Question
+          data={question}
+          key={key}
+          visible={key==selectedQuestion? true:false} />
+      ))}
       <View style={styles.selectQuestion}>
         {questions.obj.map((question: any, key: number) => (
-            <Text onPress={() => setSelectedQuestion(key)} key={key}
+          <Text onPress={() => setSelectedQuestion(key)} key={key}
             style={styles.questionNum}>{question.id_questao}</Text>
-          ))}
+        ))}
       </View>
     </View >
   );
@@ -72,5 +77,5 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     padding: 10,
     borderRadius: 10,
-  }
+  },
 });

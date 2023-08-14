@@ -1,17 +1,28 @@
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View, Text, TouchableHighlight } from 'react-native';
+import { useState } from 'react';
 
-export default function Question({data}: any) {
+export default function Question({ data, visible }: any) {
+  const [selectedAnswer, setSelectedAnswer] = useState(undefined);
+
   return (
-  <View style={styles.body}>
-    <Text style={styles.question}>{data.questao}</Text>
-    <View style={styles.alternatives}>
-      {data.alternativas.map((alternative: any) => (
-        <View style={styles.alternativeCard} key={alternative.id}>
-          <Text>{alternative.alternativa}</Text>
-        </View>
-      ))}
+    <View style={visible? styles.body:{display: 'none'}}>
+      <Text style={styles.question}>{data.questao}</Text>
+      <View style={styles.alternatives}>
+        {data.alternativas.map((alternative: any) => (
+          <TouchableHighlight
+            style={alternative.id === selectedAnswer ? styles.selectedAlternativeCard : styles.alternativeCard}
+            key={alternative.id}
+            onPress={() => setSelectedAnswer(alternative.id)}>
+            <Text style={alternative.id === selectedAnswer ? {color: '#ddd'} : {}}>{alternative.alternativa}</Text>
+          </TouchableHighlight>
+        ))}
       </View>
-  </View>
+      <Text
+        style={styles.button}
+      >
+        Confirmar resposta
+      </Text>
+    </View>
   )
 }
 
@@ -36,7 +47,23 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     marginTop: 10
   },
-  confirmButton: {
-
-  }
+  selectedAlternativeCard: {
+    backgroundColor: '#111',
+    padding: 10,
+    borderRadius: 10,
+    marginTop: 10,
+  },
+  button: {
+    backgroundColor: '#F6F6F6',
+    width: '70%',
+    padding: 10,
+    borderRadius: 30,
+    alignSelf: 'center',
+    textAlign: 'center',
+    fontSize: 20,
+    fontWeight: 'bold',
+    margin: 10,
+    borderColor: '#000',
+    borderWidth: 1,
+  },
 });
