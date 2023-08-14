@@ -3,7 +3,7 @@ import { StyleSheet, View, Text } from 'react-native';
 export default function Question({data}: any) {
   return (
   <View style={styles.body}>
-    <View style={styles.question}>{data.questao}</View>
+    <Text style={styles.question}>{data.questao}</Text>
     <View style={styles.alternatives}>
       {data.alternativas.map((alternative: any) => (
         <View style={styles.alternativeCard} key={alternative.id}>
