@@ -14,7 +14,7 @@ export default function App() {
     <View style={styles.body}>
       <Header />
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="Questões">
+        <Stack.Navigator initialRouteName="Home">
           <Stack.Screen name="Home" component={HomeScreen} />
           <Stack.Screen name="Questões" component={QuestionsScreen} />
           <Stack.Screen name="Personalizar" component={PersonalizeScreen} />
