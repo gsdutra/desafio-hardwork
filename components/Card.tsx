@@ -1,4 +1,4 @@
-import { StyleSheet, View, Text, Image, Button } from 'react-native';
+import { StyleSheet, View, Text, Image, Pressable } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 
 export default function Card({ title, description, button, navigation }: any) {
@@ -13,10 +13,12 @@ export default function Card({ title, description, button, navigation }: any) {
         <Text style={styles.title}>{title}</Text>
       </View>
       <Text style={styles.description}>{description}</Text>
-      <Button
-        title={button}
+      <Pressable
+        style={styles.button}
         onPress={() => navigation.navigate(title)}
-      />
+      >
+        <Text style={{fontWeight: 'bold'}}>{button}</Text>
+      </Pressable>
     </LinearGradient>
   );
 }
@@ -47,5 +49,18 @@ const styles = StyleSheet.create({
     fontSize: 14,
     wordWrap: 'break-word',
     color: 'white',
+  },
+  button: {
+    backgroundColor: '#F6F6F6',
+    width: '30%',
+    padding: 10,
+    borderRadius: 30,
+    alignSelf: 'flex-end',
+    alignItems: 'center',
+    fontSize: 20,
+    fontWeight: 'bold',
+    margin: 10,
+    borderColor: '#000',
+    borderWidth: 1,
   },
 });
